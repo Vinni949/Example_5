@@ -54,7 +54,7 @@ namespace Example_005
             {
                 Console.WriteLine("Введите номер: \n1-задание №1, 2-задание №2, 3-задание №3, 4-задание №4, 5-задание №5.");
                 Console.WriteLine("0-exit");
-                int a = Convert.ToInt32(Console.ReadKey(true));
+                int a = Convert.ToInt32(Console.ReadLine());
                 switch (a)
                 {
                     case 1:
@@ -83,12 +83,14 @@ namespace Example_005
                 bool choice = true;
                 while (choice)
                 {
-                    Console.WriteLine("Введите номер: \n1.1-задание №1.1, 1.2-задание №1.2, 1.3-задание №1.3.");
+                    Console.WriteLine("Введите номер: \n1-задание №1.1, 2-задание №1.2, 3-задание №1.3.");
                     Console.WriteLine("0-exit");
-                    double a = Convert.ToInt32(Console.ReadKey(true));
+                    int a;
+                    string input = Console.ReadLine();
+                    int.TryParse(input, out a);
                     switch (a)
                     {
-                        case 1.1:
+                        case 1:
                             Task1_1();
                             break;
 
@@ -109,7 +111,11 @@ namespace Example_005
             static void Task1_1()
             {
                 int a = 0;
-                int[,] arr = new int[3, 3];
+                Console.WriteLine("Введите колличество столбцов:");
+                int column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк:");
+                int lines= Convert.ToInt32(Console.ReadLine());
+                int[,] arr = new int[column, lines];
                 for (int i = 0; i < arr.GetLength(0); i++)
                 {
                     for (int j = 0; j < arr.GetLength(1); j++)
@@ -142,8 +148,16 @@ namespace Example_005
             //Задание 1.2
             static void Task1_2()
             {
-                int[,] arr1 = new int[3, 3];
-                int[,] arr2 = new int[3, 3];
+                Console.WriteLine("Введите колличество столбцов для первого массива");
+                int column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для первого массива");
+                int lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr1 = new int[column, lines];
+                Console.WriteLine("Введите колличество столбцов для второго массива");
+                column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для второго массива");
+                lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr2 = new int[column, lines];
 
                 int a = 0;
                 for (int i = 0; i < arr1.GetLength(0); i++)
@@ -173,8 +187,17 @@ namespace Example_005
             //задание 1.3
             static void Task1_3()
             {
-                int[,] arr1 = new int[3, 3];
-                int[,] arr2 = new int[3, 3];
+                Console.WriteLine("Введите колличество столбцов для первого массива");
+                int column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для первого массива");
+                int lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr1 = new int[column, lines];
+                Console.WriteLine("Введите колличество столбцов для второго массива");
+                column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для второго массива");
+                lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr2 = new int[column, lines];
+
                 int a = 0;
                 for (int i = 0; i < arr1.GetLength(0); i++)
                 {
