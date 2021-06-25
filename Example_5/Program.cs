@@ -54,7 +54,7 @@ namespace Example_005
             {
                 Console.WriteLine("Введите номер: \n1-задание №1, 2-задание №2, 3-задание №3, 4-задание №4, 5-задание №5.");
                 Console.WriteLine("0-exit");
-                int a = Convert.ToInt32(Console.ReadLine());
+                int a = Convert.ToInt32(Console.ReadKey());
                 switch (a)
                 {
                     case 1:
