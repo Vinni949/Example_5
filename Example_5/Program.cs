@@ -54,7 +54,7 @@ namespace Example_005
             {
                 Console.WriteLine("Введите номер: \n1-задание №1, 2-задание №2, 3-задание №3, 4-задание №4, 5-задание №5.");
                 Console.WriteLine("0-exit");
-                int a = Convert.ToInt32(Console.ReadKey());
+                int a = Convert.ToInt32(Console.ReadLine());
                 switch (a)
                 {
                     case 1:
@@ -77,7 +77,7 @@ namespace Example_005
                         break;
                 }
             }
-
+            
             static void Task1()
             {
                 bool choice = true;
@@ -249,14 +249,14 @@ namespace Example_005
                 Console.WriteLine(GeometricProgressionConversions(input));
                 Console.Read();
             }
+            
             //Задание 5
             static void Task5()
             {
                 Console.Write("Введите первое число:");
-                int number1 = Convert.ToInt32(Console.Read());
+                int number1 = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Введите второе число:");
-                int number2 = Convert.ToInt32(Console.Read());
-                Console.WriteLine(A(number1, number2));
+                int number2 = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine(A(number1, number2));
                 Console.Read();
             }
@@ -369,7 +369,7 @@ namespace Example_005
 
             static string Conversions(string input)
             {
-                string word = "";
+                string word = input[0].ToString();
                 for (int i = 1; i < input.Length; i++)
                 {
                     if (input[i - 1] != input[i])
@@ -465,8 +465,9 @@ namespace Example_005
             static int A(int n, int m)
             {
                 if (n == 0) return m + 1;
-                if (m == 0) return A(n - 1, m);
-                return A(n - 1, A(n, m - 1));
+                if (n != 0 && m == 0) return A(n - 1, 1);
+                if (n > 0 && m > 0) return A(n - 1, A(n, m - 1));
+                return A(n, m);
             }
         }
     }
