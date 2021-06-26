@@ -54,26 +54,28 @@ namespace Example_005
             {
                 Console.WriteLine("Введите номер: \n1-задание №1, 2-задание №2, 3-задание №3, 4-задание №4, 5-задание №5.");
                 Console.WriteLine("0-exit");
-                int a = Convert.ToInt32(Console.ReadKey());
-                switch (a)
+                switch (Console.ReadKey().Key)
                 {
-                    case 1:
+                    case ConsoleKey.D1:
                         Task1();
                         break;
-                    case 2:
+                    case ConsoleKey.D2:
                         Task2();
                         break;
-                    case 3:
+                    case ConsoleKey.D3:
                         Task3();
                         break;
-                    case 4:
+                    case ConsoleKey.D4:
                         Task4();
                         break;
-                    case 5:
+                    case ConsoleKey.D5:
                         Task5();
                         break;
-                    case 0:
+                    case ConsoleKey.D0:
                         choice = false;
+                        break;
+                    default:
+                        Console.WriteLine("Нажата неверна клавиша, введите снова!");
                         break;
                 }
             }
@@ -85,24 +87,23 @@ namespace Example_005
                 {
                     Console.WriteLine("Введите номер: \n1-задание №1.1, 2-задание №1.2, 3-задание №1.3.");
                     Console.WriteLine("0-exit");
-                    int a;
-                    string input = Console.ReadLine();
-                    int.TryParse(input, out a);
-                    switch (a)
+                    switch (Console.ReadKey().Key)
                     {
-                        case 1:
+                        case ConsoleKey.D1:
                             Task1_1();
                             break;
 
-                        case 2:
+                        case ConsoleKey.D2:
                             Task1_2();
                             break;
-                        case 3:
+                        case ConsoleKey.D3:
                             Task1_3();
                             break;
-
-                        case 0:
+                        case ConsoleKey.D0:
                             choice = false;
+                            break;
+                        default:
+                            Console.WriteLine("Нажата неверна клавиша, введите снова!");
                             break;
                     }
                 }
