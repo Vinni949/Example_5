@@ -80,24 +80,26 @@ namespace Example_005
                 }
             }
             
-            static void Task1()
+            static void Task1() //блок первого задания
             {
                 bool choice = true;
                 while (choice)
                 {
-                    Console.WriteLine("Введите номер: \n1-задание №1.1, 2-задание №1.2, 3-задание №1.3.");
+                    Console.WriteLine("Введите номер: \n1-задание 'Умножение матрицы на число', 2-задание 'Сложение матриц', \n3-задание 'умножение матриц',4-задание 'Вычитание матриц'.");
                     Console.WriteLine("0-exit");
                     switch (Console.ReadKey().Key)
                     {
                         case ConsoleKey.D1:
                             Task1_1();
                             break;
-
                         case ConsoleKey.D2:
                             Task1_2();
                             break;
                         case ConsoleKey.D3:
                             Task1_3();
+                            break;
+                        case ConsoleKey.D4:
+                            Task1_4();
                             break;
                         case ConsoleKey.D0:
                             choice = false;
@@ -109,7 +111,7 @@ namespace Example_005
                 }
             }
             //задание 1.1
-            static void Task1_1()
+            static void Task1_1() //метод, принимающий число и матрицу, возвращающий матрицу умноженную на число
             {
                 int a = 0;
                 Console.WriteLine("Введите колличество столбцов:");
@@ -135,7 +137,7 @@ namespace Example_005
                 }
                 Console.Write("ВВедите число:");
                 int operand = Convert.ToInt32(Console.ReadLine());
-                Number(operand, arr);
+                MultiplicationByNumber(operand, arr);
                 for (int i = 0; i < arr.GetLength(0); i++)
                 {
                     for (int j = 0; j < arr.GetLength(1); j++)
@@ -147,7 +149,7 @@ namespace Example_005
                 Console.Read();
             }
             //Задание 1.2
-            static void Task1_2()
+            static void Task1_2() //метод, принимающий две матрицу, возвращающий их сумму
             {
                 Console.WriteLine("Введите колличество столбцов для первого массива");
                 int column = Convert.ToInt32(Console.ReadLine());
@@ -159,34 +161,37 @@ namespace Example_005
                 Console.WriteLine("Введите колличество строк для второго массива");
                 lines = Convert.ToInt32(Console.ReadLine());
                 int[,] arr2 = new int[column, lines];
-
-                int a = 0;
-                for (int i = 0; i < arr1.GetLength(0); i++)
+                if (arr1.Length == arr2.Length)
                 {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
+                    int a = 0;
+                    for (int i = 0; i < arr1.GetLength(0); i++)
                     {
-                        a++;
-                        arr1[i, j] = a;
-                        arr2[i, j] = a;
-                        Console.Write(arr1[i, j] + " ");
+                        for (int j = 0; j < arr1.GetLength(1); j++)
+                        {
+                            a++;
+                            arr1[i, j] = a;
+                            arr2[i, j] = a;
+                            Console.Write(arr1[i, j] + " ");
+                        }
+                        Console.WriteLine();
                     }
-                    Console.WriteLine();
-                }
-                Console.WriteLine("\n" + "-" + "\n");
+                    Console.WriteLine("\n" + "+" + "\n");
 
-                Amount(arr1, arr2);
-                for (int i = 0; i < arr1.GetLength(0); i++)
-                {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
+                    MatriAddition(arr1, arr2);
+                    for (int i = 0; i < arr1.GetLength(0); i++)
                     {
-                        Console.Write(arr1[i, j] + " ");
+                        for (int j = 0; j < arr1.GetLength(1); j++)
+                        {
+                            Console.Write(arr1[i, j] + " ");
+                        }
+                        Console.WriteLine();
                     }
-                    Console.WriteLine();
+                    Console.Read();
                 }
-                Console.Read();
+                else { Console.WriteLine("Матрицы разных размеров"); }
             }
             //задание 1.3
-            static void Task1_3()
+            static void Task1_3()//Умножение матриц
             {
                 Console.WriteLine("Введите колличество столбцов для первого массива");
                 int column = Convert.ToInt32(Console.ReadLine());
@@ -212,7 +217,7 @@ namespace Example_005
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n" + "*" + "\n");
-                int[,] result = Composition(arr1, arr2);
+                int[,] result = MatrixMultiplication(arr1, arr2);
                 Console.WriteLine("\n" + "=" + "\n");
                 for (int i = 0; i < arr1.GetLength(0); i++)
                 {
@@ -224,8 +229,50 @@ namespace Example_005
                 }
                 Console.Read();
             }
+            //задание 1.4
+            static void Task1_4() //Вычитание матриц
+            {
+                Console.WriteLine("Введите колличество столбцов для первого массива");
+                int column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для первого массива");
+                int lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr1 = new int[column, lines];
+                Console.WriteLine("Введите колличество столбцов для второго массива");
+                column = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Введите колличество строк для второго массива");
+                lines = Convert.ToInt32(Console.ReadLine());
+                int[,] arr2 = new int[column, lines];
+                if (arr1.Length == arr2.Length)
+                {
+                    int a = 0;
+                    for (int i = 0; i < arr1.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < arr1.GetLength(1); j++)
+                        {
+                            a++;
+                            arr1[i, j] = a;
+                            arr2[i, j] = a;
+                            Console.Write(arr1[i, j] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.WriteLine("\n" + "-" + "\n");
+
+                    SubtractingMatrices(arr1, arr2);
+                    for (int i = 0; i < arr1.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < arr1.GetLength(1); j++)
+                        {
+                            Console.Write(arr1[i, j] + " ");
+                        }
+                        Console.WriteLine();
+                    }
+                    Console.Read();
+                }
+                else { Console.WriteLine("Матрицы разных размеров"); }
+            }
             //Задание 2
-            static void Task2()
+            static void Task2()//принимают текст и возвращают слова
             {
                 Console.WriteLine("Введите текст:");
                 string txt = Console.ReadLine();
@@ -236,8 +283,10 @@ namespace Example_005
                 Console.Read();
             }
             //задание 3
-            static void Task3()
+            static void Task3()//Удаляет задвоенные символы в строке.
             {
+                Console.WriteLine("ВВедите строку с задвоенными символами.");
+                Console.WriteLine("В Результате работы метода,получится новый текст в котором удалены все кратные рядом стоящие символы, оставив по одному .");
                 string input = Console.ReadLine();
                 Console.WriteLine(Conversions(input));
                 Console.Read();
@@ -245,6 +294,7 @@ namespace Example_005
             //задание 4
             static void Task4()
             {
+                Console.WriteLine("\nВВедите строку чисел.");
                 string input = Console.ReadLine();
                 Console.WriteLine(ArithmeticProgressionConversions(input));
                 Console.WriteLine(GeometricProgressionConversions(input));
@@ -252,17 +302,17 @@ namespace Example_005
             }
             
             //Задание 5
-            static void Task5()
+            static void Task5()// вычисляет функцию Аккермана и возвращает результат в виде числа.
             {
                 Console.Write("Введите первое число:");
-                int number1 = Convert.ToInt32(Console.ReadLine());
+                int firstNumber = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Введите второе число:");
-                int number2 = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine(A(number1, number2));
+                int seconNumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(A(firstNumber, seconNumber));
                 Console.Read();
             }
 
-            static void Number(int operand, int[,] arr)
+            static void MultiplicationByNumber (int operand, int[,] arr)//умножение матрицы на число
             {
 
                 for (int i = 0; i < arr.GetLength(0); i++)
@@ -270,13 +320,11 @@ namespace Example_005
                     for (int j = 0; j < arr.GetLength(1); j++)
                     {
                         arr[i, j] *= operand;
-                        Console.Write(arr[i, j] + " ");
                     }
-                    Console.WriteLine();
                 }
             }
 
-            static void Amount(int[,] arr1, int[,] arr2)
+            static void MatriAddition(int[,] arr1, int[,] arr2)//Сложение матриц
             {
                 for (int i = 0; i < arr1.GetLength(0); i++)
                 {
@@ -287,25 +335,40 @@ namespace Example_005
                 }
             }
 
-            static int[,] Composition(int[,] arr1, int[,] arr2)
+            static void SubtractingMatrices(int[,] arr1, int[,] arr2)//Вычитание матриц
             {
-                int[,] result = new int[arr1.GetLength(0), arr2.GetLength(1)];
                 for (int i = 0; i < arr1.GetLength(0); i++)
                 {
-                    for (int j = 0; j < arr2.GetLength(1); j++)
+                    for (int j = 0; j < arr1.GetLength(1); j++)
                     {
-                        for (int k = 0; k < arr2.GetLength(0); k++)
-                        {
-                            result[i, j] += arr1[i, k] * arr2[k, j];
-                        }
+                        arr2[i, j] -= arr1[i, j];
                     }
                 }
-                return result;
             }
 
-            static string MinWord(string txt)
+            static int[,] MatrixMultiplication(int[,] arr1, int[,] arr2)//Умножение матриц
             {
-                List<string> list = new List<string>();
+                if (arr1.GetLength(1) != arr2.GetLength(0)) throw new Exception("Матрицы нельзя перемножить");
+                {
+                    int[,] result = new int[arr1.Length, arr2.Length];
+
+                    for (int i = 0; i < arr1.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < arr2.GetLength(1); j++)
+                        {
+                            for (int k = 0; k < arr2.GetLength(0); k++)
+                            {
+                                result[i, j] += arr1[i, k] * arr2[k, j];
+                            }
+                        }
+                    }
+                    return result;
+                }
+            }
+
+            static string MinWord(string txt)//слово с минимальной длиной.
+            {
+                List<string> listWord = new List<string>();
                 string minWord = "";
                 string str = "";
                 for (int i = 0; i < txt.Length; i++)
@@ -317,25 +380,30 @@ namespace Example_005
                     }
                     else
                     {
-                        list.Add(str);
+                        listWord.Add(str);
                         str = "";
                     }
                 }
                 int buf = 10;
-                for (int i = 0; i < list.Count; i++)
+                for (int i = 0; i < listWord.Count; i++)
                 {
-                    if (buf > list[i].Count() && list[i].Count() != 0)
+                    if (buf > listWord[i].Count() && listWord[i].Count() != 0)
                     {
-                        buf = list[i].Count();
-                        minWord = list[i];
+                        buf = listWord[i].Count();
+                        minWord = listWord[i];
+                    }
+                    else if (buf == listWord[i].Count())
+                    {
+                        minWord += ", ";
+                        minWord += listWord[i];
                     }
                 }
                 return minWord;
             }
 
-            static string MaxWord(string txt)
+            static string MaxWord(string txt)//слов с максимальной длиной.
             {
-                List<string> list = new List<string>();
+                List<string> listWord = new List<string>();
                 string maxWord = "";
                 string str = "";
                 for (int i = 0; i < txt.Length; i++)
@@ -347,28 +415,28 @@ namespace Example_005
                     }
                     else
                     {
-                        list.Add(str);
+                        listWord.Add(str);
                         str = "";
                     }
                 }
                 int buf = 0;
-                for (int i = 0; i < list.Count; i++)
+                for (int i = 0; i < listWord.Count; i++)
                 {
-                    if (buf < list[i].Count())
+                    if (buf < listWord[i].Count())
                     {
-                        buf = list[i].Count();
-                        maxWord = list[i];
+                        buf = listWord[i].Count();
+                        maxWord = listWord[i];
                     }
-                    else if (buf == list[i].Count())
+                    else if (buf == listWord[i].Count())
                     {
                         maxWord += ", ";
-                        maxWord += list[i];
+                        maxWord += listWord[i];
                     }
                 }
                 return maxWord;
             }
 
-            static string Conversions(string input)
+            static string Conversions(string input)//Удаляет задвоенные символы в строке.
             {
                 string word = input[0].ToString();
                 for (int i = 1; i < input.Length; i++)
@@ -381,7 +449,7 @@ namespace Example_005
                 return word;
             }
 
-            static bool ArithmeticProgressionConversions(string input)
+            static bool ArithmeticProgressionConversions(string input)//Проверка на арифметическую прогрессию
             {
                 string word = "";
                 List<string> list = new List<string>();
@@ -422,7 +490,7 @@ namespace Example_005
 
             }
 
-            static bool GeometricProgressionConversions(string input)
+            static bool GeometricProgressionConversions(string input)//Проверка на геометрическую прогрессию
             {
                 string word = "";
                 List<string> list = new List<string>();
@@ -463,7 +531,7 @@ namespace Example_005
 
             }
 
-            static int A(int n, int m)
+            static int A(int n, int m)// вычисляет функцию Аккермана и возвращает результат в виде числа.
             {
                 if (n == 0) return m + 1;
                 if (n != 0 && m == 0) return A(n - 1, 1);
