@@ -198,21 +198,30 @@ namespace Example_005
                 Console.WriteLine("Введите колличество строк для первого массива");
                 int lines = Convert.ToInt32(Console.ReadLine());
                 int[,] arr1 = new int[column, lines];
+                int a = 0;
+                for (int i = 0; i <column; i++)
+                {
+                    for (int j = 0; j < lines; j++)
+                    {
+                        a++;
+                        arr1[i, j] = a;
+                        Console.Write(arr1[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
                 Console.WriteLine("Введите колличество столбцов для второго массива");
                 column = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Введите колличество строк для второго массива");
                 lines = Convert.ToInt32(Console.ReadLine());
                 int[,] arr2 = new int[column, lines];
-
-                int a = 0;
-                for (int i = 0; i < arr1.GetLength(0); i++)
+                a = 0;
+                for (int i = 0; i < column; i++)
                 {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
+                    for (int j = 0; j < lines; j++)
                     {
                         a++;
-                        arr1[i, j] = a;
                         arr2[i, j] = a;
-                        Console.Write(arr1[i, j] + " ");
+                        Console.Write(arr2[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
