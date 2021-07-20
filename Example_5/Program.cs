@@ -305,8 +305,8 @@ namespace Example_005
             {
                 Console.WriteLine("\nВВедите строку чисел.");
                 string input = Console.ReadLine();
-                Console.WriteLine(ArithmeticProgressionConversions(input));
-                Console.WriteLine(GeometricProgressionConversions(input));
+                ArithmeticProgressionConversions(input);
+                GeometricProgressionConversions(input);
                 Console.Read();
             }
             
@@ -458,7 +458,7 @@ namespace Example_005
                 return word;
             }
 
-            static bool ArithmeticProgressionConversions(string input)//Проверка на арифметическую прогрессию
+            static void ArithmeticProgressionConversions(string input)//Проверка на арифметическую прогрессию
             {
                 string word = "";
                 List<string> list = new List<string>();
@@ -488,18 +488,18 @@ namespace Example_005
                     for (int i = 1; i < arr.Length - 1; i++)
                     {
                         if (arr[i] + d != arr[i + 1])
-                            return false;
+                            Console.WriteLine("Не является арефмитической прогрессией!");
                     }
-                    return true;
+                    Console.WriteLine("Является арефмитической прогрессией!");
                 }
                 else
                 {
-                    return false;
+                    Console.WriteLine("Не является арефмитической прогрессией!");
                 }
 
             }
 
-            static bool GeometricProgressionConversions(string input)//Проверка на геометрическую прогрессию
+            static void GeometricProgressionConversions(string input)//Проверка на геометрическую прогрессию
             {
                 string word = "";
                 List<string> list = new List<string>();
@@ -529,13 +529,13 @@ namespace Example_005
                     for (int i = 0; i < arr.Length - 1; i++)
                     {
                         if (arr[i] * d != arr[i + 1])
-                            return false;
+                        Console.WriteLine("Не является геометрической прогрессией!");
                     }
-                    return true;
+                    Console.WriteLine("Является геометрической прогрессией!");
                 }
                 else
                 {
-                    return false;
+                    Console.WriteLine("Не является геометрической прогрессией!");
                 }
 
             }
