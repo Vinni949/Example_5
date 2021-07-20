@@ -448,11 +448,12 @@ namespace Example_005
             static string Conversions(string input)//Удаляет задвоенные символы в строке.
             {
                 string word = input[0].ToString();
+                word.ToLower();
                 for (int i = 1; i < input.Length; i++)
                 {
                     if (input[i - 1] != input[i])
                     {
-                        word += input[i];
+                        word +=input[i];
                     }
                 }
                 return word;
