@@ -209,6 +209,7 @@ namespace Example_005
                     }
                     Console.WriteLine();
                 }
+                Console.WriteLine("\n" + "*" + "\n");
                 Console.WriteLine("Введите колличество столбцов для второго массива");
                 column = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Введите колличество строк для второго массива");
@@ -225,14 +226,14 @@ namespace Example_005
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine("\n" + "*" + "\n");
                 int[,] result = MatrixMultiplication(arr1, arr2);
                 Console.WriteLine("\n" + "=" + "\n");
-                for (int i = 0; i < arr1.GetLength(0); i++)
+                for (int i = 0; i < result.GetLength(0); i++)
                 {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
+                    for (int j = 0; j < result.GetLength(1); j++)
                     {
-                        Console.Write(arr1[i, j] + " ");
+                        if (result[i,j]!=0)
+                            Console.Write(result[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
