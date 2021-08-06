@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "Task_1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Task_1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Task_1.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Task_1/1.0.0": {
+      "type": "project",
+      "path": "../Task_1/Task_1.csproj",
+      "msbuildProject": "../Task_1/Task_1.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "Task_1 >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\pumba\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\pumba\\source\\repos\\Example_5\\Task_1\\Task_1.csproj": {
+              "projectPath": "C:\\Users\\pumba\\source\\repos\\Example_5\\Task_1\\Task_1.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
