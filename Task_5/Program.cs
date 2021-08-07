@@ -8,13 +8,38 @@ namespace Task_5
         {
             Console.WriteLine();
             Console.Write("Введите первое число:");
-            int firstNumber = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Введите второе число:");
-            int seconNumber = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(A(firstNumber, seconNumber));
-            Console.Read();
+            int firstNumber;
+            if (int.TryParse(Console.ReadLine(), out firstNumber))
+            {
+                Console.Write("Введите второе число:");
+                int seconNumber;
+                if (int.TryParse(Console.ReadLine(), out seconNumber))
+                {
+                    Console.WriteLine(A(firstNumber, seconNumber));
+                    Console.Read();
+                }
+                else
+                    Console.WriteLine("ВВедены не верные данные!");
+            }
+            else
+                Console.WriteLine("ВВедены не верные данные!");
         }
 
+        /// <summary>
+        /// Проверяет правильность введеных данных
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static bool CheckingCorrectnessInput(int input)
+        {
+            if (input > 0)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
         /// <summary>
         /// Рекурсия функции Аккермана
         /// </summary>

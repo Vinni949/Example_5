@@ -51,13 +51,13 @@ namespace Task_1
             {
                 Console.WriteLine();
                 int a = 0;
-                Console.WriteLine("Введите колличество столбцов:");
-                int column = Convert.ToInt32(Console.ReadLine());
-                if (CheckingCorrectnessInput(column))
+                Console.WriteLine("Введите колличество строк:");
+                int lines;
+                if (int.TryParse(Console.ReadLine(), out lines))
                 {
-                    Console.WriteLine("Введите колличество строк:");
-                    int lines = Convert.ToInt32(Console.ReadLine());
-                    if (CheckingCorrectnessInput(lines))
+                    Console.WriteLine("Введите колличество столбцов:");
+                    int column;
+                    if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr = new int[column, lines];
                         for (int i = 0; i < arr.GetLength(0); i++)
@@ -68,26 +68,16 @@ namespace Task_1
                                 arr[i, j] = a;
                             }
                         }
-                        for (int i = 0; i < arr.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < arr.GetLength(1); j++)
-                            {
-                                Console.Write(arr[i, j] + " ");
-                            }
-                            Console.WriteLine();
-                        }
+                        PrintMatrix(arr);
                         Console.Write("ВВедите число:");
-                        int operand = Convert.ToInt32(Console.ReadLine());
-                        MultiplicationByNumber(operand, arr);
-                        for (int i = 0; i < arr.GetLength(0); i++)
+                        int operand;
+                        if (int.TryParse(Console.ReadLine(), out operand))
                         {
-                            for (int j = 0; j < arr.GetLength(1); j++)
-                            {
-                                Console.Write(arr[i, j] + " ");
-                            }
-                            Console.WriteLine();
+                            int[,] result = MultiplicationByNumber(operand, arr);
+                            PrintMatrix(result);
                         }
-                        Console.Read();
+                        else
+                            Console.WriteLine("Введено неверное число!");
                     }
                 }
                 else
@@ -98,22 +88,21 @@ namespace Task_1
             static void Task1_2() //метод, принимающий две матрицу, возвращающий их сумму
             {
                 Console.WriteLine();
-                Console.WriteLine("Введите колличество столбцов для первого массива");
-                int column = Convert.ToInt32(Console.ReadLine());
-                if (CheckingCorrectnessInput(column))
+                Console.WriteLine("Введите колличество строк для первого массива");
+                int lines;
+                if (int.TryParse(Console.ReadLine(), out lines))
                 {
-                    Console.WriteLine("Введите колличество строк для первого массива");
-                    int lines = Convert.ToInt32(Console.ReadLine());
-                    if (CheckingCorrectnessInput(lines))
+                    Console.WriteLine("Введите колличество столбцов для первого массива");
+                    int column;
+                    if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr1 = new int[column, lines];
-                        Console.WriteLine("Введите колличество столбцов для второго массива");
-                        column = Convert.ToInt32(Console.ReadLine());
-                        if (CheckingCorrectnessInput(column))
+                        Console.WriteLine("Введите колличество строк для второго массива");
+                        if (int.TryParse(Console.ReadLine(), out lines))
                         {
-                            Console.WriteLine("Введите колличество строк для второго массива");
+                            Console.WriteLine("Введите колличество столбцов для второго массива");
                             lines = Convert.ToInt32(Console.ReadLine());
-                            if (CheckingCorrectnessInput(lines))
+                            if (int.TryParse(Console.ReadLine(), out column))
                             {
                                 int[,] arr2 = new int[column, lines];
                                 if (arr1.GetLength(0) == arr2.GetLength(0) && arr1.GetLength(1) == arr2.GetLength(1))
@@ -126,21 +115,14 @@ namespace Task_1
                                             a++;
                                             arr1[i, j] = a;
                                             arr2[i, j] = a;
-                                            Console.Write(arr1[i, j] + " ");
                                         }
-                                        Console.WriteLine();
                                     }
+                                    PrintMatrix(arr1);
+                                    PrintMatrix(arr2);
                                     Console.WriteLine("\n" + "+" + "\n");
 
                                     int[,] result = MatriAddition(arr1, arr2);
-                                    for (int i = 0; i < result.GetLength(0); i++)
-                                    {
-                                        for (int j = 0; j < result.GetLength(1); j++)
-                                        {
-                                            Console.Write(result[i, j] + " ");
-                                        }
-                                        Console.WriteLine();
-                                    }
+                                    PrintMatrix(result);
                                     Console.Read();
                                 }
                                 else { Console.WriteLine("Матрицы разных размеров"); }
@@ -156,13 +138,13 @@ namespace Task_1
             static void Task1_3()//Умножение матриц
             {
                 Console.WriteLine();
-                Console.WriteLine("Введите колличество столбцов для первого массива");
-                int column = Convert.ToInt32(Console.ReadLine());
-                if (CheckingCorrectnessInput(column))
+                Console.WriteLine("Введите колличество строк для первого массива");
+                int lines;
+                if (int.TryParse(Console.ReadLine(), out lines))
                 {
-                    Console.WriteLine("Введите колличество строк для первого массива");
-                    int lines = Convert.ToInt32(Console.ReadLine());
-                    if (CheckingCorrectnessInput(lines))
+                    Console.WriteLine("Введите колличество столбцов для первого массива");
+                    int column;
+                    if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr1 = new int[column, lines];
                         int a = 0;
@@ -172,18 +154,15 @@ namespace Task_1
                             {
                                 a++;
                                 arr1[i, j] = a;
-                                Console.Write(arr1[i, j] + " ");
                             }
-                            Console.WriteLine();
                         }
+                        PrintMatrix(arr1);
                         Console.WriteLine("\n" + "*" + "\n");
-                        Console.WriteLine("Введите колличество столбцов для второго массива");
-                        column = Convert.ToInt32(Console.ReadLine());
-                        if (CheckingCorrectnessInput(column))
+                        Console.WriteLine("Введите колличество строк для второго массива");
+                        if (int.TryParse(Console.ReadLine(), out lines))
                         {
-                            Console.WriteLine("Введите колличество строк для второго массива");
-                            lines = Convert.ToInt32(Console.ReadLine());
-                            if (CheckingCorrectnessInput(lines))
+                            Console.WriteLine("Введите колличество столбцов для второго массива");
+                            if (int.TryParse(Console.ReadLine(), out column))
                             {
                                 int[,] arr2 = new int[column, lines];
                                 a = 0;
@@ -193,22 +172,15 @@ namespace Task_1
                                     {
                                         a++;
                                         arr2[i, j] = a;
-                                        Console.Write(arr2[i, j] + " ");
+                                        
                                     }
-                                    Console.WriteLine();
                                 }
+                                PrintMatrix(arr2);
                                 if (arr1.GetLength(0) == arr2.GetLength(1) && arr1.GetLength(1) == arr2.GetLength(0))
                                 {
                                     int[,] result = MatrixMultiplication(arr1, arr2);
                                     Console.WriteLine("\n" + "=" + "\n");
-                                    for (int i = 0; i < result.GetLength(0); i++)
-                                    {
-                                        for (int j = 0; j < result.GetLength(1); j++)
-                                        {
-                                            Console.Write(result[i, j] + " ");
-                                        }
-                                        Console.WriteLine();
-                                    }
+                                    PrintMatrix(result);
                                     Console.Read();
                                 }
                             }
@@ -223,21 +195,19 @@ namespace Task_1
             {
                 Console.WriteLine();
                 Console.WriteLine("Введите колличество строк для первого массива");
-                int lines = Convert.ToInt32(Console.ReadLine());
-                if (CheckingCorrectnessInput(lines))
+                int lines;
+                if (int.TryParse(Console.ReadLine(), out lines))
                 {
                     Console.WriteLine("Введите колличество столбцов для первого массива");
-                    int column = Convert.ToInt32(Console.ReadLine());
-                    if (CheckingCorrectnessInput(column))
+                    int column;
+                    if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr1 = new int[column, lines];
-                        Console.WriteLine("Введите колличество столбцов для второго массива");
-                        column = Convert.ToInt32(Console.ReadLine());
-                        if (CheckingCorrectnessInput(column))
+                        Console.WriteLine("Введите колличество строк для второго массива");
+                        if (int.TryParse(Console.ReadLine(), out lines))
                         {
-                            Console.WriteLine("Введите колличество строк для второго массива");
-                            lines = Convert.ToInt32(Console.ReadLine());
-                            if (CheckingCorrectnessInput(lines))
+                            Console.WriteLine("Введите колличество столбцов для второго массива");
+                            if (int.TryParse(Console.ReadLine(), out column))
                             {
                                 int[,] arr2 = new int[column, lines];
                                 if (arr1.Length == arr2.Length)
@@ -250,22 +220,13 @@ namespace Task_1
                                             a++;
                                             arr1[i, j] = a;
                                             arr2[i, j] = a;
-                                            Console.Write(arr1[i, j] + " ");
                                         }
-                                        Console.WriteLine();
                                     }
+                                    PrintMatrix(arr1);
                                     Console.WriteLine("\n" + "-" + "\n");
-
-                                    SubtractingMatrices(arr1, arr2);
-                                    for (int i = 0; i < arr1.GetLength(0); i++)
-                                    {
-                                        for (int j = 0; j < arr1.GetLength(1); j++)
-                                        {
-                                            Console.Write(arr1[i, j] + " ");
-                                        }
-                                        Console.WriteLine();
-                                    }
-                                    Console.Read();
+                                    PrintMatrix(arr2);
+                                    int[,] result=SubtractingMatrices(arr1, arr2);
+                                    PrintMatrix(result);
                                 }
                                 else { Console.WriteLine("Матрицы разных размеров"); }
                             }
@@ -280,16 +241,17 @@ namespace Task_1
             /// </summary>
             /// <param name="operand"></param>
             /// <param name="arr"></param>
-            static void MultiplicationByNumber(int operand, int[,] arr)//умножение матрицы на число
+            static int[,] MultiplicationByNumber(int operand, int[,] arr)//умножение матрицы на число
             {
-
+                int[,] result = new int[arr.GetLength(0), arr.GetLength(1)];
                 for (int i = 0; i < arr.GetLength(0); i++)
                 {
                     for (int j = 0; j < arr.GetLength(1); j++)
                     {
-                        arr[i, j] *= operand;
+                        result[i, j] = arr[i, j] * operand;
                     }
                 }
+                return result;
             }
             /// <summary>
             /// Функция складывает две матрицы
@@ -338,15 +300,17 @@ namespace Task_1
             /// </summary>
             /// <param name="arr1"></param>
             /// <param name="arr2"></param>
-            static void SubtractingMatrices(int[,] arr1, int[,] arr2)//Вычитание матриц
+            static int[,] SubtractingMatrices(int[,] arr1, int[,] arr2)//Вычитание матриц
             {
+                int[,] result = new int[arr1.GetLength(0), arr1.GetLength(1)];
                 for (int i = 0; i < arr1.GetLength(0); i++)
                 {
                     for (int j = 0; j < arr1.GetLength(1); j++)
                     {
-                        arr2[i, j] -= arr1[i, j];
+                        result[i,j]=arr2[i, j] - arr1[i, j];
                     }
                 }
+                return result;
             }
 
             static bool CheckingCorrectnessInput(int input)
@@ -359,6 +323,21 @@ namespace Task_1
                     return false;
 
             }
+        }
+        /// <summary>
+        /// Печатает Матрицы
+        /// </summary>
+            static void PrintMatrix(int[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write(arr[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.Read();
         }
     }
 }

@@ -18,12 +18,21 @@ namespace Task_4
                 int count;
                 if (int.TryParse(Console.ReadLine(), out count))
                 {
+                    int input;
                     int[] arr = new int[count];
                     Console.WriteLine("\nВВедите элементы массива.");
-                    for (int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++)
+                {
+                    if (int.TryParse(Console.ReadLine(), out input))
                     {
-                        arr[i] = Convert.ToInt32(Console.ReadLine());
+                        if (input < 0)
+                        {
+                            arr[i] = input;
+                        }
                     }
+                    else
+                        Console.WriteLine("Число не может быть отрицательным или ровнятся 0.");
+                }
                     Console.WriteLine(CheckProgression(arr));
                 }
                 else
