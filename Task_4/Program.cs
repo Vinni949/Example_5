@@ -25,7 +25,7 @@ namespace Task_4
                 {
                     if (int.TryParse(Console.ReadLine(), out input))
                     {
-                        if (input < 0)
+                        if (input > 0)
                         {
                             arr[i] = input;
                         }
@@ -52,7 +52,6 @@ namespace Task_4
         {
             bool IsArithmeticProgression = true;
             bool IsGeometricProgression = true;
-            string output = "";
             int d = arr[1] - arr[0];
             for (int i = 1; i < arr.Length - 1; i++)
             {
@@ -79,6 +78,16 @@ namespace Task_4
             {
                 return "Не является прогрессией.";
             }
+        }
+        static bool CheckingCorrectnessInput(int input)
+        {
+            if (input > 0)
+            {
+                return true;
+            }
+            else
+                return false;
+
         }
     }
 }

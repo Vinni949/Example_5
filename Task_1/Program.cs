@@ -42,7 +42,7 @@ namespace Task_1
                         break;
                 }
             }
-
+        }
             //задание 1.1
             /// <summary>
             /// Функция, принимающий число и матрицу, возвращающий матрицу умноженную на число
@@ -50,7 +50,6 @@ namespace Task_1
             static void Task1_1()
             {
                 Console.WriteLine();
-                int a = 0;
                 Console.WriteLine("Введите колличество строк:");
                 int lines;
                 if (int.TryParse(Console.ReadLine(), out lines))
@@ -60,14 +59,7 @@ namespace Task_1
                     if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr = new int[column, lines];
-                        for (int i = 0; i < arr.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < arr.GetLength(1); j++)
-                            {
-                                a++;
-                                arr[i, j] = a;
-                            }
-                        }
+                        FillsInTheMatrix(arr);
                         PrintMatrix(arr);
                         Console.Write("ВВедите число:");
                         int operand;
@@ -101,26 +93,16 @@ namespace Task_1
                         if (int.TryParse(Console.ReadLine(), out lines))
                         {
                             Console.WriteLine("Введите колличество столбцов для второго массива");
-                            lines = Convert.ToInt32(Console.ReadLine());
                             if (int.TryParse(Console.ReadLine(), out column))
                             {
                                 int[,] arr2 = new int[column, lines];
                                 if (arr1.GetLength(0) == arr2.GetLength(0) && arr1.GetLength(1) == arr2.GetLength(1))
                                 {
-                                    int a = 0;
-                                    for (int i = 0; i < arr1.GetLength(0); i++)
-                                    {
-                                        for (int j = 0; j < arr1.GetLength(1); j++)
-                                        {
-                                            a++;
-                                            arr1[i, j] = a;
-                                            arr2[i, j] = a;
-                                        }
-                                    }
+                                    FillsInTheMatrix(arr1);
+                                    FillsInTheMatrix(arr2);
                                     PrintMatrix(arr1);
                                     PrintMatrix(arr2);
                                     Console.WriteLine("\n" + "+" + "\n");
-
                                     int[,] result = MatriAddition(arr1, arr2);
                                     PrintMatrix(result);
                                     Console.Read();
@@ -147,15 +129,7 @@ namespace Task_1
                     if (int.TryParse(Console.ReadLine(), out column))
                     {
                         int[,] arr1 = new int[column, lines];
-                        int a = 0;
-                        for (int i = 0; i < column; i++)
-                        {
-                            for (int j = 0; j < lines; j++)
-                            {
-                                a++;
-                                arr1[i, j] = a;
-                            }
-                        }
+                        FillsInTheMatrix(arr1);
                         PrintMatrix(arr1);
                         Console.WriteLine("\n" + "*" + "\n");
                         Console.WriteLine("Введите колличество строк для второго массива");
@@ -165,24 +139,15 @@ namespace Task_1
                             if (int.TryParse(Console.ReadLine(), out column))
                             {
                                 int[,] arr2 = new int[column, lines];
-                                a = 0;
-                                for (int i = 0; i < column; i++)
-                                {
-                                    for (int j = 0; j < lines; j++)
-                                    {
-                                        a++;
-                                        arr2[i, j] = a;
-                                        
-                                    }
-                                }
+                                FillsInTheMatrix(arr2);
                                 PrintMatrix(arr2);
                                 if (arr1.GetLength(0) == arr2.GetLength(1) && arr1.GetLength(1) == arr2.GetLength(0))
                                 {
                                     int[,] result = MatrixMultiplication(arr1, arr2);
                                     Console.WriteLine("\n" + "=" + "\n");
                                     PrintMatrix(result);
-                                    Console.Read();
                                 }
+                                Console.Read();
                             }
                         }
                     }
@@ -212,20 +177,12 @@ namespace Task_1
                                 int[,] arr2 = new int[column, lines];
                                 if (arr1.Length == arr2.Length)
                                 {
-                                    int a = 0;
-                                    for (int i = 0; i < arr1.GetLength(0); i++)
-                                    {
-                                        for (int j = 0; j < arr1.GetLength(1); j++)
-                                        {
-                                            a++;
-                                            arr1[i, j] = a;
-                                            arr2[i, j] = a;
-                                        }
-                                    }
+                                    FillsInTheMatrix(arr1);
+                                    FillsInTheMatrix(arr2);
                                     PrintMatrix(arr1);
                                     Console.WriteLine("\n" + "-" + "\n");
                                     PrintMatrix(arr2);
-                                    int[,] result=SubtractingMatrices(arr1, arr2);
+                                    int[,] result = SubtractingMatrices(arr1, arr2);
                                     PrintMatrix(result);
                                 }
                                 else { Console.WriteLine("Матрицы разных размеров"); }
@@ -307,23 +264,12 @@ namespace Task_1
                 {
                     for (int j = 0; j < arr1.GetLength(1); j++)
                     {
-                        result[i,j]=arr2[i, j] - arr1[i, j];
+                        result[i, j] = arr2[i, j] - arr1[i, j];
                     }
                 }
                 return result;
             }
 
-            static bool CheckingCorrectnessInput(int input)
-            {
-                if (input > 0)
-                {
-                    return true;
-                }
-                else
-                    return false;
-
-            }
-        }
         /// <summary>
         /// Печатает Матрицы
         /// </summary>
@@ -337,7 +283,25 @@ namespace Task_1
                 }
                 Console.WriteLine();
             }
-            Console.Read();
         }
+        /// <summary>
+        /// Метод заполняющий матрицу
+        /// </summary>
+        /// <param name="arr"></param>
+        static void FillsInTheMatrix(int [,] arr)
+        {
+            int a=0;
+            int lines = arr.GetLength(0);
+            int column = arr.GetLength(1);
+            for (int i = 0; i <lines; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    a++;
+                    arr[i, j] = a;
+                }
+            }
+        }
+
     }
 }
