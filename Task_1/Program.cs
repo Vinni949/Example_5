@@ -122,21 +122,21 @@ namespace Task_1
                 Console.WriteLine();
                 Console.WriteLine("Введите колличество строк для первого массива");
                 int lines;
-                if (int.TryParse(Console.ReadLine(), out lines))
+                if (int.TryParse(Console.ReadLine(), out lines)&& lines>0)
                 {
                     Console.WriteLine("Введите колличество столбцов для первого массива");
                     int column;
-                    if (int.TryParse(Console.ReadLine(), out column))
+                    if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                     {
                         int[,] arr1 = new int[column, lines];
                         FillsInTheMatrix(arr1);
                         PrintMatrix(arr1);
                         Console.WriteLine("\n" + "*" + "\n");
                         Console.WriteLine("Введите колличество строк для второго массива");
-                        if (int.TryParse(Console.ReadLine(), out lines))
-                        {
+                    if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
+                    {
                             Console.WriteLine("Введите колличество столбцов для второго массива");
-                            if (int.TryParse(Console.ReadLine(), out column))
+                            if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                             {
                                 int[,] arr2 = new int[column, lines];
                                 FillsInTheMatrix(arr2);
@@ -161,19 +161,19 @@ namespace Task_1
                 Console.WriteLine();
                 Console.WriteLine("Введите колличество строк для первого массива");
                 int lines;
-                if (int.TryParse(Console.ReadLine(), out lines))
-                {
+            if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
+            {
                     Console.WriteLine("Введите колличество столбцов для первого массива");
                     int column;
-                    if (int.TryParse(Console.ReadLine(), out column))
-                    {
+                if (int.TryParse(Console.ReadLine(), out column) && column > 0)
+                {
                         int[,] arr1 = new int[column, lines];
                         Console.WriteLine("Введите колличество строк для второго массива");
-                        if (int.TryParse(Console.ReadLine(), out lines))
-                        {
+                    if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
+                    {
                             Console.WriteLine("Введите колличество столбцов для второго массива");
-                            if (int.TryParse(Console.ReadLine(), out column))
-                            {
+                        if (int.TryParse(Console.ReadLine(), out column) && column > 0)
+                        {
                                 int[,] arr2 = new int[column, lines];
                                 if (arr1.Length == arr2.Length)
                                 {
@@ -200,10 +200,12 @@ namespace Task_1
             /// <param name="arr"></param>
             static int[,] MultiplicationByNumber(int operand, int[,] arr)//умножение матрицы на число
             {
-                int[,] result = new int[arr.GetLength(0), arr.GetLength(1)];
-                for (int i = 0; i < arr.GetLength(0); i++)
+            int lines = arr.GetLength(0);
+            int column = arr.GetLength(1);
+            int[,] result = new int[lines, column];
+                for (int i = 0; i < lines; i++)
                 {
-                    for (int j = 0; j < arr.GetLength(1); j++)
+                    for (int j = 0; j < column; j++)
                     {
                         result[i, j] = arr[i, j] * operand;
                     }
@@ -218,10 +220,14 @@ namespace Task_1
             /// <returns></returns>
             static int[,] MatriAddition(int[,] arr1, int[,] arr2)//Сложение матриц
             {
-                int[,] resultMatrix = new int[arr1.GetLength(0), arr2.GetLength(1)];
-                for (int i = 0; i < arr1.GetLength(0); i++)
+            int lines = arr1.GetLength(0);
+            int column = arr1.GetLength(1);
+            int column2 = arr2.GetLength(1);
+
+            int[,] resultMatrix = new int[lines, column2];
+                for (int i = 0; i < lines; i++)
                 {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
+                    for (int j = 0; j < column; j++)
                     {
                         resultMatrix[i, j] = arr2[i, j] + arr1[i, j];
                     }
@@ -237,13 +243,16 @@ namespace Task_1
             /// <returns></returns>
             static int[,] MatrixMultiplication(int[,] arr1, int[,] arr2)//Умножение матриц
             {
-                int[,] result = new int[arr1.GetLength(0), arr2.GetLength(1)];
+            int lines = arr1.GetLength(0);
+            int column = arr2.GetLength(1);
+            int column2 = arr2.GetLength(0);
+            int[,] result = new int[lines, column];
 
-                for (int i = 0; i < arr1.GetLength(0); i++)
+                for (int i = 0; i < lines; i++)
                 {
-                    for (int j = 0; j < arr2.GetLength(1); j++)
+                    for (int j = 0; j < column; j++)
                     {
-                        for (int k = 0; k < arr2.GetLength(0); k++)
+                        for (int k = 0; k < column2; k++)
                         {
                             result[i, j] += arr1[i, k] * arr2[k, j];
                         }
@@ -259,12 +268,14 @@ namespace Task_1
             /// <param name="arr2"></param>
             static int[,] SubtractingMatrices(int[,] arr1, int[,] arr2)//Вычитание матриц
             {
-                int[,] result = new int[arr1.GetLength(0), arr1.GetLength(1)];
-                for (int i = 0; i < arr1.GetLength(0); i++)
+            int lines = arr1.GetLength(0);
+            int column = arr1.GetLength(1); 
+            int[,] result = new int[lines, column];
+            for (int i = 0; i < lines; i++)
+            {
+                for (int j = 0; j < column; j++)
                 {
-                    for (int j = 0; j < arr1.GetLength(1); j++)
-                    {
-                        result[i, j] = arr2[i, j] - arr1[i, j];
+                    result[i, j] = arr2[i, j] - arr1[i, j];
                     }
                 }
                 return result;
@@ -275,9 +286,11 @@ namespace Task_1
         /// </summary>
             static void PrintMatrix(int[,] arr)
         {
-            for (int i = 0; i < arr.GetLength(0); i++)
+            int lines = arr.GetLength(0);
+            int column = arr.GetLength(1);
+            for (int i = 0; i < lines; i++)
             {
-                for (int j = 0; j < arr.GetLength(1); j++)
+                for (int j = 0; j < column; j++)
                 {
                     Console.Write(arr[i, j] + " ");
                 }
@@ -290,15 +303,14 @@ namespace Task_1
         /// <param name="arr"></param>
         static void FillsInTheMatrix(int [,] arr)
         {
-            int a=0;
+            Random rand = new Random();
             int lines = arr.GetLength(0);
             int column = arr.GetLength(1);
             for (int i = 0; i <lines; i++)
             {
                 for (int j = 0; j < column; j++)
                 {
-                    a++;
-                    arr[i, j] = a;
+                    arr[i, j] = rand.Next(1, 11);
                 }
             }
         }
