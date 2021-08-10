@@ -9,11 +9,11 @@ namespace Task_5
             Console.WriteLine();
             Console.Write("Введите первое число:");
             int firstNumber;
-            if (int.TryParse(Console.ReadLine(), out firstNumber))
+            if (int.TryParse(Console.ReadLine(), out firstNumber)&& CheckingCorrectnessInput(firstNumber))
             {
                 Console.Write("Введите второе число:");
                 int seconNumber;
-                if (int.TryParse(Console.ReadLine(), out seconNumber))
+                if (int.TryParse(Console.ReadLine(), out seconNumber) && CheckingCorrectnessInput(seconNumber))
                 {
                     Console.WriteLine(A(firstNumber, seconNumber));
                     Console.Read();

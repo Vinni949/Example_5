@@ -25,10 +25,13 @@ namespace Task_4
                 {
                     if (int.TryParse(Console.ReadLine(), out input))
                     {
-                        if (input > 0)
+                        if (input > 1)
                         {
                             arr[i] = input;
                         }
+                        else
+                            Console.WriteLine("Введено не верное число.");
+                        return;
                     }
                     else
                         Console.WriteLine("Число не может быть отрицательным или ровнятся 0.");

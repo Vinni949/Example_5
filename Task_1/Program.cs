@@ -88,24 +88,24 @@ namespace Task_1
                     int column;
                     if (int.TryParse(Console.ReadLine(), out column))
                     {
-                        int[,] arr1 = new int[column, lines];
+                        int[,] arr1 = new int[lines,column];
                         Console.WriteLine("Введите колличество строк для второго массива");
                         if (int.TryParse(Console.ReadLine(), out lines))
                         {
                             Console.WriteLine("Введите колличество столбцов для второго массива");
                             if (int.TryParse(Console.ReadLine(), out column))
                             {
-                                int[,] arr2 = new int[column, lines];
+                                int[,] arr2 = new int[lines, column];
                                 if (arr1.GetLength(0) == arr2.GetLength(0) && arr1.GetLength(1) == arr2.GetLength(1))
                                 {
                                     FillsInTheMatrix(arr1);
                                     FillsInTheMatrix(arr2);
                                     PrintMatrix(arr1);
-                                    PrintMatrix(arr2);
-                                    Console.WriteLine("\n" + "+" + "\n");
+                                Console.WriteLine("\n" + "+" + "\n");
+                                PrintMatrix(arr2);
+                                    Console.WriteLine("\n" + "=" + "\n");
                                     int[,] result = MatriAddition(arr1, arr2);
                                     PrintMatrix(result);
-                                    Console.Read();
                                 }
                                 else { Console.WriteLine("Матрицы разных размеров"); }
                             }
@@ -128,7 +128,7 @@ namespace Task_1
                     int column;
                     if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                     {
-                        int[,] arr1 = new int[column, lines];
+                        int[,] arr1 = new int[lines, column];
                         FillsInTheMatrix(arr1);
                         PrintMatrix(arr1);
                         Console.WriteLine("\n" + "*" + "\n");
@@ -138,7 +138,7 @@ namespace Task_1
                             Console.WriteLine("Введите колличество столбцов для второго массива");
                             if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                             {
-                                int[,] arr2 = new int[column, lines];
+                                int[,] arr2 = new int[lines, column];
                                 FillsInTheMatrix(arr2);
                                 PrintMatrix(arr2);
                                 if (arr1.GetLength(0) == arr2.GetLength(1) && arr1.GetLength(1) == arr2.GetLength(0))
@@ -147,7 +147,6 @@ namespace Task_1
                                     Console.WriteLine("\n" + "=" + "\n");
                                     PrintMatrix(result);
                                 }
-                                Console.Read();
                             }
                         }
                     }
@@ -167,14 +166,14 @@ namespace Task_1
                     int column;
                 if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                 {
-                        int[,] arr1 = new int[column, lines];
+                        int[,] arr1 = new int[lines, column];
                         Console.WriteLine("Введите колличество строк для второго массива");
                     if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
                     {
                             Console.WriteLine("Введите колличество столбцов для второго массива");
                         if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                         {
-                                int[,] arr2 = new int[column, lines];
+                                int[,] arr2 = new int[lines, column];
                                 if (arr1.Length == arr2.Length)
                                 {
                                     FillsInTheMatrix(arr1);
