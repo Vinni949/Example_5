@@ -122,37 +122,42 @@ namespace Task_1
                 Console.WriteLine();
                 Console.WriteLine("Введите колличество строк для первого массива");
                 int lines;
-                if (int.TryParse(Console.ReadLine(), out lines)&& lines>0)
+            if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
+            {
+                Console.WriteLine("Введите колличество столбцов для первого массива");
+                int column;
+                if (int.TryParse(Console.ReadLine(), out column) && column > 0)
                 {
-                    Console.WriteLine("Введите колличество столбцов для первого массива");
-                    int column;
-                    if (int.TryParse(Console.ReadLine(), out column) && column > 0)
-                    {
-                        int[,] arr1 = new int[lines, column];
-                        FillsInTheMatrix(arr1);
-                        PrintMatrix(arr1);
-                        Console.WriteLine("\n" + "*" + "\n");
-                        Console.WriteLine("Введите колличество строк для второго массива");
+                    int[,] arr1 = new int[lines, column];
+                    FillsInTheMatrix(arr1);
+                    PrintMatrix(arr1);
+                    Console.WriteLine("\n" + "*" + "\n");
+                    Console.WriteLine("Введите колличество строк для второго массива");
                     if (int.TryParse(Console.ReadLine(), out lines) && lines > 0)
                     {
-                            Console.WriteLine("Введите колличество столбцов для второго массива");
-                            if (int.TryParse(Console.ReadLine(), out column) && column > 0)
+                        Console.WriteLine("Введите колличество столбцов для второго массива");
+                        if (int.TryParse(Console.ReadLine(), out column) && column > 0)
+                        {
+                            int[,] arr2 = new int[lines, column];
+                            FillsInTheMatrix(arr2);
+                            PrintMatrix(arr2);
+                            if (arr1.GetLength(0) == arr2.GetLength(1) && arr1.GetLength(1) == arr2.GetLength(0))
                             {
-                                int[,] arr2 = new int[lines, column];
-                                FillsInTheMatrix(arr2);
-                                PrintMatrix(arr2);
-                                if (arr1.GetLength(0) == arr2.GetLength(1) && arr1.GetLength(1) == arr2.GetLength(0))
-                                {
-                                    int[,] result = MatrixMultiplication(arr1, arr2);
-                                    Console.WriteLine("\n" + "=" + "\n");
-                                    PrintMatrix(result);
-                                }
+                                int[,] result = MatrixMultiplication(arr1, arr2);
+                                Console.WriteLine("\n" + "=" + "\n");
+                                PrintMatrix(result);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Колличество строк первого массива не равен количеству столбцов второго массива \n"
+                                    + "или колличество строк второго массива не равено количеству столбцов первого массива!");
                             }
                         }
                     }
                 }
-                else
-                    Console.WriteLine("Введено неверное число!");
+            }
+            else
+                Console.WriteLine("Введено неверное число!");
             }
             //задание 1.4
             static void Task1_4() //Вычитание матриц

@@ -23,18 +23,17 @@ namespace Task_4
                     Console.WriteLine("\nВВедите элементы массива.");
                 for (int i = 0; i < count; i++)
                 {
+                    Console.WriteLine("Введите число и нажмите Enter:");
                     if (int.TryParse(Console.ReadLine(), out input))
                     {
-                        if (input > 1)
-                        {
-                            arr[i] = input;
-                        }
-                        else
-                            Console.WriteLine("Введено не верное число.");
-                        return;
+
+                        arr[i] = input;
                     }
                     else
-                        Console.WriteLine("Число не может быть отрицательным или ровнятся 0.");
+                    {
+                        Console.WriteLine("Введено не верное число.");
+                        return;
+                    }
                 }
                     Console.WriteLine(CheckProgression(arr));
                 }
@@ -61,13 +60,18 @@ namespace Task_4
                 if (arr[i] + d != arr[i + 1])
                 { IsArithmeticProgression = false; }
             }
-
-            d = arr[1] / arr[0];
-            for (int i = 0; i < arr.Length - 1; i++)
+            if (CheckingCorrectnessInput(arr))
             {
-                if (arr[i] * d != arr[i + 1])
-                { IsGeometricProgression = false; }
+                d = arr[1] / arr[0];
+                for (int i = 0; i < arr.Length - 1; i++)
+                {
+                    if (arr[i] * d != arr[i + 1])
+                    { IsGeometricProgression = false; }
+
+                }
             }
+            else
+            { return "в геометрической прогрессии не может быть нулей."; }
 
             if (IsArithmeticProgression)
             {
@@ -82,15 +86,25 @@ namespace Task_4
                 return "Не является прогрессией.";
             }
         }
-        static bool CheckingCorrectnessInput(int input)
+        /// <summary>
+        /// Проверка есть ли в массиве число 0
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        static bool CheckingCorrectnessInput(int[] arr)
         {
-            if (input > 0)
-            {
-                return true;
-            }
-            else
-                return false;
+            bool confirmation = true;
 
+            for (int i=0;i<arr.Length;i++)
+            {
+                if (arr[i] != 0)
+                {
+                    { confirmation = true; }
+                }
+                else
+                    confirmation= false;
+            }
+            return confirmation;
         }
     }
 }
