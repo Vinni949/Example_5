@@ -16,31 +16,35 @@ namespace Task_4
             Console.WriteLine();
                 Console.WriteLine("\nВВедите колличество элементов массива.");
                 int count;
-                if (int.TryParse(Console.ReadLine(), out count))
+            if (int.TryParse(Console.ReadLine(), out count))
+            {
+                if (count >= 3)
                 {
                     int input;
                     int[] arr = new int[count];
                     Console.WriteLine("\nВВедите элементы массива.");
-                for (int i = 0; i < count; i++)
-                {
-                    Console.WriteLine("Введите число и нажмите Enter:");
-                    if (int.TryParse(Console.ReadLine(), out input))
+                    for (int i = 0; i < count; i++)
                     {
+                        Console.WriteLine("Введите число и нажмите Enter:");
+                        if (int.TryParse(Console.ReadLine(), out input))
+                        {
 
-                        arr[i] = input;
+                            arr[i] = input;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Введено не верное число.");
+                            return;
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Введено не верное число.");
-                        return;
-                    }
-                }
                     Console.WriteLine(CheckProgression(arr));
                 }
-                else
-                {
-                    Console.WriteLine("Неверные входные данные.");
-                }
+                else { Console.WriteLine("Для определения типа прогрессии нужно минимум три числа.");}
+            }
+            else
+            {
+                Console.WriteLine("Неверные входные данные.");
+            }
                 Console.ReadKey();
             
         }
