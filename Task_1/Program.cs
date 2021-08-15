@@ -141,7 +141,7 @@ namespace Task_1
                             int[,] arr2 = new int[lines, column];
                             FillsInTheMatrix(arr2);
                             PrintMatrix(arr2);
-                            if (arr1.GetLength(0) == arr2.GetLength(1))
+                            if (arr1.GetLength(1) == arr2.GetLength(0))
                             {
                                 int[,] result = MatrixMultiplication(arr1, arr2);
                                 Console.WriteLine("\n" + "=" + "\n");
@@ -150,6 +150,7 @@ namespace Task_1
                             else
                             {
                                 Console.WriteLine("Колличество строк первого массива не равен количеству столбцов второго массива!");
+                            
                             }
                         }
                     }
